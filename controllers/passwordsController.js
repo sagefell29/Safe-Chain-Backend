@@ -1,6 +1,5 @@
 const encryption = require('../scripts/encryption')
 const decryption = require('../scripts/decryption')
-const fs = require('fs')
 const savePassword = (req, res) => {
     try {
         const { name, website, username, password, description, token } = req.body
