@@ -1,9 +1,8 @@
 const encryption = require('../scripts/encryption')
-
+const decryption = require('../scripts/decryption')
 const savePassword = (req, res) => {
     try {
-        const { name, website, username, password, description } = req.body
-        const token = req.header('token')
+        const { name, website, username, password, description, token } = req.body
         const data = {
             name,
             website,
@@ -19,4 +18,16 @@ const savePassword = (req, res) => {
     }
 }
 
-module.exports = { savePassword }
+const getPassword = (req, res) => {
+    try {
+        const { text, token } = req.body
+        const decryptedData = decryption(text, token)
+        res.json({ success: true, message: "Password retrieved successfully", data: decryptedData })
+    } catch (error) {
+        console.log(error.message)
+        res.json({ success: false, message: "Internal Server Error Occured. Try Again Later." })
+    }
+}
+
+
+module.exports = { savePassword, getPassword }
