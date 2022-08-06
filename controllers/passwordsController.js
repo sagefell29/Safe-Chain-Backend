@@ -1,7 +1,8 @@
 const encryption = require('../scripts/encryption')
 const decryption = require('../scripts/decryption')
-const IPFS = require('ipfs-mini')
-const ipfs = new IPFS({ host: 'ipfs.infura.io', port: 5001, protocol: 'https' })
+const ipfsAPI = require('ipfs-api')
+const ipfs = ipfsAPI('ipfs.infura.io', '5001', { protocol: 'https' })
+
 const User = require('../models/User')
 
 const savePassword = async (req, res) => {
@@ -15,12 +16,12 @@ const savePassword = async (req, res) => {
             description
         }
         const encrpytedData = encryption(data, token)
-        const cid = await ipfs.add(encrpytedData)
-        if (!cid) {
+        const buffer = new Buffer(encrpytedData)
+        const file = await ipfs.files.add(buffer)
+        if (!file[0].hash) {
             return res.json({ success: false, message: "Error Saving Password. Try Again Later." })
-
         }
-        const update = await User.updateOne({ token: token }, { $push: { passwords: cid } })
+        const update = await User.updateOne({ token: token }, { $push: { passwords: file[0].hash } })
         if (!update.acknowledged) {
             return res.json({ success: false, message: "Error Saving Password. Try Again Later." })
         }
@@ -31,11 +32,25 @@ const savePassword = async (req, res) => {
     }
 }
 
-const getPassword = (req, res) => {
+const getPassword = async (req, res) => {
     try {
         const { token } = req.body
-        const decryptedData = decryption(text, token)
-        res.json({ success: true, message: "Password retrieved successfully", data: decryptedData })
+        const user = await User.findOne({ token: token })
+        if (!user) {
+            return res.json({ success: false, message: "No user available." })
+        }
+        const cids = user.passwords
+        const data = []
+        for (var i = 0; i < cids.length; i++) {
+            const files = await ipfs.files.get(cids[i])
+            if (!files[0].content.toString('utf8')) {
+                return res.json({ success: false, message: "Error getting data" })
+            }
+            const text = files[0].content.toString('utf8')
+            const decryptedData = decryption(text, token)
+            data.push(decryptedData)
+        }
+        res.json({ success: true, message: "Password retrieved successfully", data: data })
     } catch (error) {
         console.log(error.message)
         res.json({ success: false, message: "Internal Server Error Occured. Try Again Later." })
