@@ -1,6 +1,7 @@
 require('dotenv').config()
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcryptjs')
+const User = require('../models/User')
 
 const createUser = async (req, res) => {
     try {
@@ -14,6 +15,14 @@ const createUser = async (req, res) => {
             }
         }
         const token = jwt.sign(data, process.env.JWT_SECRET_KEY)
+        const user = await User.create({
+            token: token,
+            passwords: [],
+            credit_cards: []
+        })
+        if(!user) {
+            return res.json({success:false, message:"Error creating user"})
+        }
         res.json({ success: true, message: "Account created successfully", token: token })
     } catch (error) {
         console.log(error.message)
