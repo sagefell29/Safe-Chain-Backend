@@ -12,10 +12,6 @@ const savePassword = (req, res) => {
             description
         }
         const encrpytedData = encryption(data, token)
-        fs.writeFileSync("/data/test.txt", encrpytedData, (err) => {
-            if (err) throw err;
-            console.log('The file has been saved!');
-        })
         res.json({ success: true, message: "Password saved successfully", data: encrpytedData })
     } catch (error) {
         console.log(error.message)
