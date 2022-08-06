@@ -3,8 +3,10 @@ const app = express()
 const cors = require('cors')
 const port = process.env.PORT || 3000
 const storeFiles = require('./web3.storage/upload.js')
+const connectToDatabase = require('./database/connection.js')
 app.use(cors())
 app.use(express.json())
+connectToDatabase()
 
 app.get('/', async(req, res) => {
     // const cid = await storeFiles('{"name":"prasoon"}')
