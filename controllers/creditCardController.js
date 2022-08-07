@@ -32,4 +32,29 @@ const saveCreditCard = async (req, res) => {
     }
 }
 
-module.exports = { saveCreditCard }
+const getCreditCards = async (req, res) => {
+    try {
+        const { token } = req.body
+        const user = await User.findOne({ token: token })
+        if (!user) {
+            return res.json({ success: false, message: "No user available." })
+        }
+        const cids = user.credit_cards
+        const data = []
+        for (var i = 0; i < cids.length; i++) {
+            const files = await ipfs.files.get(cids[i])
+            if (!files[0].content.toString('utf8')) {
+                return res.json({ success: false, message: "Error getting data" })
+            }
+            const text = files[0].content.toString('utf8')
+            const decryptedData = decryption(text, token)
+            data.push(decryptedData)
+        }
+        res.json({ success: true, message: "Credit Card Details retrieved successfully", data: data })
+    } catch (error) {
+        console.log(error.message)
+        res.json({ success: false, message: "Internal Server Error Occured. Try Again Later." })
+    }
+}
+
+module.exports = { saveCreditCard, getCreditCards }
