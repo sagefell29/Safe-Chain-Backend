@@ -115,7 +115,7 @@ In order to get a copy of the project you will require you to have Node.js (v14+
 ### Installation
 Open the terminal in the folder in which you wish to clone the repository and enter the following command:
 ``` 
-git clone https://github.com/prasoonsoni/Safe-Chain.git
+git clone https://github.com/prasoonsoni/Safe-Chain-Backend.git
 cd Safe-Chain
 ```
 Install all the NPM packages:
@@ -136,7 +136,7 @@ npm run start
 
 Following are the environment variables used for backend:
 - `JWT_SECRET_KEY` - SecretKey for Json Web Token
-
+- `MONGO_URI` - MongoDB URI for your database
 <!-- CONTRIBUTING -->
 ## <img src="https://hpe-developer-portal.s3.amazonaws.com/uploads/media/2020/3/git-icon-1788c-1590702885345.png" width=32 height=32> Contributing
 
