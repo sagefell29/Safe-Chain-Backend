@@ -9,11 +9,11 @@ app.use(express.json())
 connectToDatabase()
 
 app.get('/', async(req, res) => {
-    // const cid = await storeFiles('{"name":"prasoon"}')
     res.send('<center><h1>Welcome to Cognition Project Backend</h1>')
 })
 app.use('/user', require('./routes/userRoutes'))
 app.use('/password', require('./routes/passwordRoutes'))
+app.use('/creditcard', require('./routes/creditCardRoutes'))
 
 app.listen(port, () => {
     console.log(`Server listening on http://localhost:${port}`)
