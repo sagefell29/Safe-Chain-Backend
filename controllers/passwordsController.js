@@ -58,5 +58,18 @@ const getPassword = async (req, res) => {
     }
 }
 
+const deletePassword = async (req, res) => {
+    try {
+        const { token, id } = req.body
+        const update = await User.updateOne({ token: token }, { $pull: { passwords: id } })
+        if (!update.acknowledged) {
+            return res.json({ success: false, message: "Error deleting Credit Card Details. Try Again Later." })
+        }
+        res.json({ success: true, message: "Password deleted successfully" })
+    } catch (error) {
+        console.log(error.message)
+        res.json({ success: false, message: "Internal Server Error Occured. Try Again Later." })
+    }
+}
 
-module.exports = { savePassword, getPassword }
+module.exports = { savePassword, getPassword, deletePassword }
