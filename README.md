@@ -8,29 +8,29 @@
   <p align="center">
     The first Decentralized Password Manager
     <br />
-    <a href="https://github.com/prasoonsoni/Safe-Chain"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/prasoonsoni/Safe-Chain-Backend"><strong>Explore the docs »</strong></a>
     <br />
     •
-    <a href="https://github.com/prasoonsoni/Safe-Chain/issues">Report Bug</a>
+    <a href="https://github.com/prasoonsoni/Safe-Chain-Backend/issues">Report Bug</a>
     •
-    <a href="https://github.com/prasoonsoni/Safe-Chain/issues">Request Feature</a>
+    <a href="https://github.com/prasoonsoni/Safe-Chain-Backend/issues">Request Feature</a>
     •
   </p>
 </p>
 
 <!-- BADGES -->
 <p align="center">
-  <a href="https://github.com/prasoonsoni/Safe-Chain/graphs/contributors">
-    <img src="https://img.shields.io/github/contributors/prasoonsoni/Safe-Chain.svg?style=for-the-badge">
+  <a href="https://github.com/prasoonsoni/Safe-Chain-Backend/graphs/contributors">
+    <img src="https://img.shields.io/github/contributors/prasoonsoni/Safe-Chain-Backend.svg?style=for-the-badge">
   </a>
-  <a href="https://github.com/prasoonsoni/Safe-Chain/network/members">
-    <img src="https://img.shields.io/github/forks/prasoonsoni/Safe-Chain?style=for-the-badge">
+  <a href="https://github.com/prasoonsoni/Safe-Chain-Backend/network/members">
+    <img src="https://img.shields.io/github/forks/prasoonsoni/Safe-Chain-Backend?style=for-the-badge">
   </a>  
-  <a href="https://github.com/prasoonsoni/Safe-Chain/stargazers">
-    <img src="https://img.shields.io/github/stars/prasoonsoni/Safe-Chain?style=for-the-badge">
+  <a href="https://github.com/prasoonsoni/Safe-Chain-Backend/stargazers">
+    <img src="https://img.shields.io/github/stars/prasoonsoni/Safe-Chain-Backend?style=for-the-badge">
   </a>
-  <a href="https://github.com/prasoonsoni/Safe-Chain/issues">
-    <img src="https://img.shields.io/github/issues/prasoonsoni/Safe-Chain?style=for-the-badge">
+  <a href="https://github.com/prasoonsoni/Safe-Chain-Backend/issues">
+    <img src="https://img.shields.io/github/issues/prasoonsoni/Safe-Chain-Backend?style=for-the-badge">
   </a>
 </p>
 
