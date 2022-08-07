@@ -48,6 +48,7 @@ const getCreditCards = async (req, res) => {
             }
             const text = files[0].content.toString('utf8')
             const decryptedData = decryption(text, token)
+            decryptedData.id = cids[i]
             data.push(decryptedData)
         }
         res.json({ success: true, message: "Credit Card Details retrieved successfully", data: data })

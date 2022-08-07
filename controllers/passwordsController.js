@@ -48,6 +48,7 @@ const getPassword = async (req, res) => {
             }
             const text = files[0].content.toString('utf8')
             const decryptedData = decryption(text, token)
+            decryptedData.id = cids[i]
             data.push(decryptedData)
         }
         res.json({ success: true, message: "Password retrieved successfully", data: data })
